@@ -91,7 +91,7 @@ void Simulation::CreateRandomState()
     }
 }
 
-void Simulation::ToggleCell(int row, int column)
+void Simulation::ToggleCell(int row, int column)  
 {
     if (!IsRunning())
     {
