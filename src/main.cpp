@@ -1,35 +1,45 @@
-#include <raylib.h>
-#include "grid.hpp"
+#include "raylib.h" // Include the Raylib library header file for graphics
+#include "Grid.hpp" // Include the Grid class header file
 
 int main()
 {
-    Color GREY = {29,29,29,255};
-    const int WINDOW_WIDTH = 750;   //screen settings
-    const int WINDOW_HEIGHT = 750;
-    const int CELL_SIZE = 25;
-    int FPS = 12;
+    // Define constants for screen dimensions, cell size, and frames per second
+    const int screenWidth = 700;
+    const int screenHeight = 700;
+    const int cellSize = 20;
+    const int fps = 3;
 
-    InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Game of Life" ); // game window launch
-    SetTargetFPS(FPS);
-    Grid grid{WINDOW_WIDTH, WINDOW_HEIGHT, CELL_SIZE};
-    grid.SetValue(0,0,1);
-    grid.SetValue(2,1,1);
-    
+    // Initialize the window with specified dimensions and title
+    InitWindow(screenWidth, screenHeight, "Game of Life");
 
-    //Simulation Loop
-    while(WindowShouldClose() == false)
+    // Set the target frames per second for the application
+    SetTargetFPS(fps);
+
+    // Create an instance of the Grid class based on screen and cell dimensions
+    Grid grid(screenWidth / cellSize, screenHeight / cellSize, cellSize);
+
+    // Main game loop
+    while (!WindowShouldClose())
     {
-        // 1. Event Handling
-
-        // 2. Updating State
-
-        // 3. Drawing
+        // Begin drawing on the window
         BeginDrawing();
-        ClearBackground(GREY);
+        
+        // Clear the background with white color
+        ClearBackground(RAYWHITE);
+
+        // Update the grid (advance the simulation by one step)
+        grid.Update();
+
+        // Draw the grid on the window
         grid.Draw();
+
+        // End drawing on the window
         EndDrawing();
     }
 
-    CloseWindow(); 
- 
+    // Close the window
+    CloseWindow();
 }
+
+    // Return 0 to indicate successful program execution
+    return 0;
